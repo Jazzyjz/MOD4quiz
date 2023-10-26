@@ -3,7 +3,7 @@ var time = document.querySelector("#counter");
 var win = document.querySelector(".win");
 var lose = document.querySelector(".lose");
 var highscores = document.querySelector(".highscores")
-var startButton = document.querySelector("#start");
+var wordBlank = document.querySelector("#wb")
 
 var winCounter = 0;
 var loseCounter = 0;
@@ -11,9 +11,24 @@ var isWin = false;
 var timerCount;
 var timer;
 
+// Add multiple choice buttons
+var mc1 = document.querySelector("#answer1");
+var mc2 = document.querySelector("#answer2");
+var mc3 = document.querySelector("#answer3");
+var mc4 = document.querySelector("#answer4");
+//attach event listener to button
+mc1.addEventListener("click",handleAnswer);
+mc2.addEventListener("click",handleAnswer);
+mc3.addEventListener("click",handleAnswer);
+mc4.addEventListener("click",handleAnswer);
 
+// Add reset button
+var resetButton = document.querySelector("#reset");
+// Attaches event listener to button
+resetButton.addEventListener("click", resetGame);
+//add start button
+var startButton = document.querySelector("#start");
 //start button event
-
 startButton.addEventListener("click", startGame);
 
 function init(){
@@ -23,7 +38,7 @@ function init(){
 
 function startGame (){
     isWin = false ; 
-    secondsLeft = 30;
+    timerCount = 10;
 // Prevents start button from being clicked when round is in progress
     startButton.disabled = true;
     countdown()
@@ -49,53 +64,74 @@ function winGame() {
 //game function
 
     // Create a quiz object
-    var quiz = {
-      questions: [
-        {
-          question: "Inside which HTML element do we put the JavaScript??",
-          answers: ["<sc>", "<javaScript>", "<Script>"],
-          correctAnswer: 2
+    var quiz = [{ 
+          question:  "Inside which HTML element do we put the JavaScript??",
+          answers: {
+            a:"<sc>", 
+            b: "<javaScript>",
+            c: "<Script>",
+            d: "<jsc>",
+          correctAnswer: "c"
         },
+      },
         {
           question: "In JavaScript, what element is used to store and manipulate text usually in multiples?",
-          answers: ["function", "arrays", "variables","strings"],
-          correctAnswer: 3
+          answers: {
+            a: "function",
+            b: "arrays", 
+            c: "variables",
+            d: "strings",
+          correctAnswer: "d",
         },
+      },
         {
             question: "What tag is used to define an image – or add an image – to an HTML page?",
-            answers: ["<div>", "<meta>", "<img>","table"],
-            correctAnswer: 2
+            answers: {
+            a: "<div>", 
+            b :"<meta>",
+            c: "<img>",
+            d: "table",
+            correctAnswer: "c",
           },
+        },
           {
             question: "What tag is used to define an unordered list that is bulleted?",
-            answers: ["ul", "u", "<il>","<ol>"],
-            correctAnswer: 0
-          }
-      ]
-    };
+            answers: {
+              a: "ul", 
+              b: "u",
+              c: "<il>",
+              d: "<ol>",
+            correctAnswer: "a",
+          },
+        }
+      ];
 
+      let quizIndex = 0;
   
     
     // Display the quiz
     function showQuiz() {
+      //for every question less than the totak questions length, display another one 
+        if(quizIndex >= quiz.length)
+        return;
+        let show = document.getElementById('question');
+        let q = quiz[quizIndex];
+        show.innerHTML = q.question;
+        Object.entries
 
-      for (var i = 0; i < quiz.questions.length; i++) {
-         var question = quiz.questions[i];
-         document.getElementById("answer1").textContent = question.answers[0];
-         document.getElementById("answer2").textContent = question.answers[1];
-         document.getElementById("answer3").textContent = question.answers[2];
-         document.getElementById("answer4").textContent = question.answers[3];
-        //  document.getElementById("correctAnswer").textContent = question.correctAnswer
-        //  document.getElementById("question").textContent = question.question;
-        //  document.getElementById("answers").textContent = question.answers;
-         document.getElementById("correctAnswer").textContent = question.correctAnswer;
-      }
-      }
-
+      // for (var i = 0; i < quiz.questions.length; i++) {
+      //    var question = quiz.questions[i];
+      //    document.getElementById("answer1").textContent = question.answers[0];
+      //    document.getElementById("answer2").textContent = question.answers[1];
+      //    document.getElementById("answer3").textContent = question.answers[2];
+      //    document.getElementById("answer4").textContent = question.answers[3];
+      // }
+      };
+      
      //check answer
 function handleAnswer (event) {
-    var answer = event.target.value;
-    var correctAnswer = quiz.questions[event.target.id].correctAnswer;
+    var answer = event.value;
+    var correctAnswer = quiz.questions[i].correctAnswer;
     if (answer === correctAnswer) {
         isWin = true;
       alert("Correct!");
@@ -123,7 +159,7 @@ function getWins() {
   var storedWins = localStorage.getItem("winCount");
   // If stored value doesn't exist, set counter to 0
   if (storedWins === null) {
-    winCounter = 0;
+    winCounter = "Wins : " +0;
   } else {
     // If a value is retrieved from client storage set the winCounter to that value
     winCounter = storedWins;
@@ -135,20 +171,13 @@ function getWins() {
 function getlosses() {
   var storedLosses = localStorage.getItem("loseCount");
   if (storedLosses === null) {
-    loseCounter = 0;
+    loseCounter = "Losses : "+ 0;
   } else {
-    loseCounter = storedLosses;
+    loseCounter = "Losses : " + storedLosses;
   }
   lose.textContent = loseCounter;
 }
 
-function checkWin() {
-  // If the word equals the blankLetters array when converted to string, set isWin to true
-  if (chosenWord === blanksLetters.join("")) {
-    // This value is used in the timer function to test if win condition is met
-    isWin = true;
-  }
-}
 
 //score add
 
@@ -164,22 +193,18 @@ function countdown() {
     // Tests if time has run out
     if (timerCount === 0) {
       // Clears interval
+      loseGame();
       clearInterval(timer);
     //   loseGame();
     }
   }, 1000);
 }
 
-// Add reset button
-var resetButton = document.querySelector("#reset");
-// Attaches event listener to button
-resetButton.addEventListener("click", resetGame);
-
 //reset game
 function resetGame() {
     // Reset win and loss score
-    winCounter = 0;
-    loseCounter = 0;
+    winCounter = "Wins : " + 0;
+    loseCounter = "Losses : " + 0;
     // posts win and loss counts 
     setWins()
     setLosses()

@@ -1,6 +1,6 @@
 # Module 4 Project: Code Quiz
 
-In this project, I will build Rest API routes for creating, retrieving, and deleting employee information from a MySQL database.
+In this project, I will create a quiz consisting of code questions.
 
 ## User Stories
 
