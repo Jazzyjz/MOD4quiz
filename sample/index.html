@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <title>JS Quiz</title>
+</head>
+<body>
+    <div id="quiz" style="display: none;">
+        <h2>Test your JS knowledge!</h2>
+        <div id="time"></div>
+        <div id="question"></div>
+        <div id="choices"></div>
+        <!-- <button onclick="checkAnswer()"></button> -->
+        <!-- <p id="result"></p> -->
+    </div>
+    <p id="result"></p>
+    <div id="inputSection" style="display: none;">
+        <label for="initials">Enter your initials: </label>
+        <input type="text" id="initials">
+        <button onclick="saveHighScore()">Save Highscore</button>
+        <p>Score: <span id="scoreDisplay">0</span>/10</p>
+    </div>
+    <div id="buttins">
+        <button onclick="startQuiz()">Start Quiz</button>
+        <button onclick="restartQuiz()" style="display: none;">Restart Quiz</button>
+        <button onclick="viewHighScores()">View Highscores</button>
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
