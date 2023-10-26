@@ -1,49 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CODE QUIZ</title>
-    <link rel="stylesheet" href="./assets/style.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style.css">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
-  </head>
-
-  <body>
-    <button class="highscores">
-      HIGHSCORES
-    </button>
-
-    <div class="container">
-      <h1>Code Quiz</h1>
-      <h2 id="wb"></h2>
-      <h3 id="counter"></h3>
-      <p id="question"></p>
-
-      <section id="answers">
-        <p id="answer1"></p>
-        <p id="answer2"></p>
-        <p id="answer3"></p>
-        <p id="answer4"></p>
-        <p id="correctAnswer"></p>
-      </section>
+    <title>JS Quiz</title>
+</head>
+<body>
+    <div id="quiz" style="display: none;">
+        <h2>Test your JS knowledge!</h2>
+        <div id="time"></div>
+        <div id="question"></div>
+        <div id="choices"></div>
     </div>
-
-    <div class="input">
-      <button id="ca"></button>
-      <button id="cb"></button>
-      <button id="cc"></button>
-      <button id="cd"></button>
+    <p id="result"></p>
+    <div id="inputSection" style="display: none;">
+        <label for="initials">Enter your initials: </label>
+        <input type="text" id="initials">
+        <button onclick="saveHighScore()">Save Highscore</button>
+        <p>Score: <span id="scoreDisplay">0</span>/10</p>
     </div>
-
-    <div class="buttons">
-      <button id="start">Start Game</button>
-      <button id="reset">Reset Scores</button>
+    <div id="buttins">
+        <button onclick="startQuiz()">Start Quiz</button>
+        <button onclick="restartQuiz()" style="display: none;">Restart Quiz</button>
+        <button onclick="viewHighScores()">View Highscores</button>
+        
     </div>
-  </body>
-  <script src="assets/anoda.js"></script>
+    <script src="./assets/script.js"></script>
+</body>
 </html>
+
+

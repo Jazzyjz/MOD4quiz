@@ -1,5 +1,7 @@
 # Module 4 Project: Code Quiz
 
+## Description
+
 In this project, I will create a quiz consisting of code questions.
 
 ## User Stories
@@ -8,7 +10,7 @@ AS A coding boot camp student
 I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
 SO THAT I can gauge my progress compared to my peers
 
-## Acceptance Criteria
+## Usage
 
 * GIVEN I am taking a code quiz
 * WHEN I click the start button
@@ -21,3 +23,7 @@ SO THAT I can gauge my progress compared to my peers
 * THEN the game is over
 * WHEN the game is over
 * THEN I can save my initials and score
+
+## License
+
+MIT License
